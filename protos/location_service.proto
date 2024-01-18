@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package location;
+
+import "location_data.proto";
+
+service SubscriberProvider {
+  rpc SetSubscriber(Subscriber) returns (SetSubscriberReply) {}
+}
+
+message SetSubscriberReply {
+  StatusCode code = 1;
+}
+
+service ZoneRequestor {
+  rpc GetSubscriber(SubscriberId) returns (SubscriberReply) {}
+  rpc GetSubscriberZones(SubscriberId) returns (SubscriberZonesReply) {}
+  rpc GetSubscribersInZone(ZoneId) returns (SubscribersInZoneReply) {}
+}
+
+message SubscriberId {
+  string id = 1;
+}
+
+message ZoneId {
+  uint64 id = 1;
+}
+
+message SubscriberReply {
+  StatusCode code = 1;
+  optional Subscriber subscriber = 2;
+}
+
+message SubscriberZonesReply {
+  StatusCode code = 1;
+  repeated ZoneId zones = 2;
+}
+
+message SubscribersInZoneReply {
+  StatusCode code = 1;
+  repeated SubscriberId subscribers = 2;
+}

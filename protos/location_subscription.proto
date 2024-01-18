@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package location;
+
+import "location_data.proto";
+
+service TriggerZoneManager {
+  rpc AddZoneTrigger(ZoneTrigger) returns (NewTriggerReply) {}
+  rpc RemoveZoneTrigger(TriggerId) returns (RemoveTriggerReply) {}
+  rpc GetZoneTriggers(Empty) returns (GetZoneTriggersReply) {}
+
+  rpc AddProximityTrigger(ProximityTrigger) returns (NewTriggerReply) {}
+  rpc RemoveProximityTrigger(TriggerId) returns (RemoveTriggerReply) {}
+  rpc GetProximityTriggers(Empty) returns (GetProximityTriggersReply) {}
+}
+
+message ZoneTrigger {
+  enum Event {
+    ENTER = 0;
+    EXIT = 1;
+    ALL = 2;
+  }
+
+  string subscriberId = 1;
+  uint64 zoneId = 2;
+  Event event = 3;
+}
+
+message NewTriggerReply {
+  StatusCode code = 1;
+  optional uint64 triggerId = 2;
+}
+
+message RemoveTriggerReply {
+  StatusCode code = 1;
+}
+
+message ZoneTriggerWithId {
+  uint64 triggerId = 1;
+  ZoneTrigger zoneTrigger = 2;
+}
+
+message GetZoneTriggersReply {
+  repeated ZoneTriggerWithId triggers = 1;
+}
+
+message ProximityTrigger {
+  string user1Id = 1;
+  string user2Id = 2;
+  uint64 distance = 3;
+}
+
+message ProximityTriggerWithId {
+  uint64 triggerId = 1;
+  ProximityTrigger proximityTrigger = 2;
+}
+
+message GetProximityTriggersReply {
+  repeated ProximityTriggerWithId triggers = 1;
+}
+
+service TriggerProcessor {
+  rpc ZoneTriggerEvent(TriggerId) returns (Empty) {}
+  rpc ProximityTriggerEvent(TriggerId) returns (Empty) {}
+}

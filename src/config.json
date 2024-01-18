@@ -1,0 +1,19 @@
+{
+  "zones": [
+    {
+      "id": 1,
+      "name": "Zone1",
+      "x": 10,
+      "y": 20,
+      "radius": 5
+    },
+    {
+      "id": 2,
+      "name": "Zone2",
+      "x": 30,
+      "y": 40,
+      "radius": 8
+    }
+  ],
+  "log_level": "trace"
+}

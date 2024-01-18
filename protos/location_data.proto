@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package location;
+
+message Subscriber {
+  string id = 1;
+  int64 x = 2;
+  int64 y = 3;
+}
+
+message Zone {
+  uint64 id = 1;
+  string name = 2;
+  int64 x = 3;
+  int64 y = 4;
+  uint64 radius = 5;
+}
+
+message TriggerId {
+  uint64 triggerId = 1;
+}
+
+enum StatusCode {
+  ERROR = 0;
+  SUCCESS = 1;
+}
+
+message Empty {}
