@@ -2,8 +2,7 @@
 
 Subscriber::Subscriber() : id(""), x(0), y(0) {}
 
-Subscriber::Subscriber(const std::string &newId, int newX, int newY)
-    : id(newId), x(newX), y(newY) {}
+Subscriber::Subscriber(const std::string &newId, int newX, int newY) : id(newId), x(newX), y(newY) {}
 
 int Subscriber::getX() const { return x; }
 
