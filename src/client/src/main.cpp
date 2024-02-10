@@ -109,11 +109,6 @@ void GetProximityTriggers(const TriggerZoneManagerStubPtr& stub, const location:
     std::cout << "GetProximityTriggers: " << reply.triggers_size() << std::endl;
 }
 
-/*
-Я не смог разобраться с тем, как должен работать TriggerProcessor, так что его
-реализация у меня достаточно специфическая
-*/
-
 void ZoneTriggerEvent(const TriggerProcessorStubPtr& stub, const location::TriggerId& triggerId) {
     location::Empty reply;
     ClientContext context;
